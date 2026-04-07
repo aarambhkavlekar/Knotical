@@ -1,0 +1,648 @@
+:root {
+    --dark-slate: #212a2f;
+    --white: #ffffff;
+}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #ece9e2;
+    cursor: auto !important; /* Forces default arrow back */
+}
+
+/* Floating Navigation */
+.floating-nav {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.95);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    border-radius: 4px;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.logo { font-weight: 900; letter-spacing: 5px; text-transform: uppercase; font-size: 18px; }
+.nav-links a { text-decoration: none; color: black; font-weight: 700; font-size: 12px; margin: 0 15px; letter-spacing: 1px; }
+.nav-icons { font-size: 14px; display: flex; gap: 15px; align-items: center; }
+.about-link { text-decoration: none; color: black; font-weight: 600; font-size: 12px; }
+
+/* Hero Carousel */
+.hero-viewport {
+    position: relative;
+    height: calc(100vh - 40px); /* Margin at top/bottom */
+    margin: 10px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.carousel-track, .slide { height: 100%; width: 100%; position: absolute; top: 0; left: 0; }
+
+.slide {
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+    display: flex;
+    align-items: flex-end; /* Align content to bottom */
+}
+
+.slide.active { opacity: 1; z-index: 1; }
+
+.hero-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* Content Overlays */
+.hero-overlay {
+    padding: 80px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Mobile default */
+    color: white;
+}
+
+/* Desktop alignment to match Allbirds Right Side */
+@media (min-width: 768px) {
+    .hero-overlay { align-items: flex-end; text-align: right; }
+}
+
+.subtitle { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+.headline { font-size: 2.5rem; font-weight: 400; margin-bottom: 30px; letter-spacing: 1px; }
+
+.btn {
+    display: inline-block;
+    padding: 14px 35px;
+    background: white;
+    color: var(--dark-slate);
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 12px;
+    border-radius: 4px;
+    margin-left: 10px;
+    transition: 0.3s;
+}
+
+.btn:hover { opacity: 0.8; }
+
+/* The Vertical Center Split */
+.vertical-divider {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    height: 100%;
+    writing-mode: vertical-rl;
+    color: rgba(255,255,255,0.7);
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+}
+
+/* Progress Bar at Bottom */
+.progress-container {
+    position: absolute;
+    bottom: 20px;
+    left: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 10;
+}
+
+.progress-bar { width: 100px; height: 3px; background: rgba(255,255,255,0.3); position: relative; }
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; height: 100%; width: 0%;
+    background: rgb(255, 255, 255);
+}
+
+/* Product Grid Layout */
+.product-grid {
+    padding: 20px 10px 20px 10px;
+    background-color: #ece9e2; /* Light background like the screenshot */
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.product-card {
+    position: relative;
+    height: 477.53px;
+    border-radius: 20px; /* Initial rounded square */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: border-radius 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+/* Hover Effect: Morph to Oval */
+.product-card:hover {
+    border-radius:  250px; /* Creates the organic oval shape */
+}
+
+/* Background Colors matching your screenshot */
+.green { background-color: #5f664d; }
+.grey { background-color: #6b6666; }
+.beige { background-color: #a39186; }
+.blue { background-color: #455266; }
+
+.product-card img {
+    width: 80%;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover img {
+    transform: translateY(-20px); /* Lift shoe slightly on hover */
+}
+
+/* Label and Button Overlay */
+.card-content {
+    position: absolute;
+    bottom: 40px;
+    text-align: center;
+    width: 100%;
+}
+
+.label {
+    display: block;
+    color: white;
+    font-weight: 500;
+    font-size: 0.75em;
+    font-family: "Geograph",system-ui,sans-serif;
+    letter-spacing: 0.025em;
+    border: 1px solid rgba(255,255,255,0.5);
+    padding: 8px 20px;
+    border-radius: 20px;
+    width: fit-content;
+    margin: 0 auto;
+    transition: opacity 0.3s ease;
+}
+
+.shop-btn {
+    display: inline-block;
+    margin-top: 15px;
+    color:white;
+    padding: 10px 25px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.5);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.75em;
+    opacity: 0; /* Hidden by default */
+    transform: translateY(10px);
+    transition: all 0.4s ease;
+}
+
+
+/* 2. The Custom Circular Cursor */
+#custom-cursor {
+    position: fixed;
+    width: 120px;
+    height: 120px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    display: none; /* Keep it hidden */
+    justify-content: center;
+    align-items: center;
+    transform: translate(-50%, -50%);
+}
+
+/* Only show the custom cursor when hovering the swiper */
+.product-swiper:hover #custom-cursor {
+    display: flex;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* 4. Ensure the arrow icon inside is visible */
+.arrow-icon {
+    font-size: 24px;
+    color: #212a2f;
+    font-weight: bold;
+    user-select: none;
+}
+
+/* Show button on hover */
+.product-card:hover .shop-btn {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.product-card:hover .label {
+    border: transparent;
+}
+
+.product-swiper {
+    width: 100%;
+    height: 550px;
+    cursor: none !important; 
+    position: relative;
+}
+
+.swiper-slide.product-item {
+    width: 60%; /* This allows the 'peek' of next/prev slides */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.3;
+    transition: opacity 0.5s ease;
+}
+
+/* Brighten the centered active shoe */
+.swiper-slide-active {
+    opacity: 1 !important;
+}
+
+.product-item img {
+    max-height: 800px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Header alignment */
+.slider-header {
+    text-align: center;
+    margin-bottom: 0px;
+    cursor: pointer;
+    margin-top: 60px;
+}
+
+.header-link {
+    border-width: 2px;
+    border: black;
+    background-color: transparent;
+    border-radius: 0%;
+    opacity: 1;
+    font: inherit;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Slide centering */
+.swiper-slide {
+    width: 60% !important; /* Forces the peeking effect on BOTH sides */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Bottom info alignment */
+.product-info-display {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.product-info-display h2 {
+    font-family: 'Times New Roman', serif; /* Allbirds uses a serif font here */
+    font-size: 32px;
+    margin-bottom: 5px;
+}
+
+/* MVP Section Styles */
+.mvp-section {
+    padding: 40px 10px;
+    background-color: #ece9e2;
+    text-align: center;
+}
+
+.mvp-header {
+    margin-top: 32px;
+    margin-bottom: 40px;
+}
+
+.mvp-title {
+    font-family: 'Times New Roman', serif;
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.mvp-subtitle {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.mvp-actions {
+    margin-bottom: 40px;
+}
+
+.mvp-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid #212a2f;
+    border-radius: 20px;
+    text-decoration: none;
+    color: #212a2f;
+    font-size: 10px;
+    font-weight: 700;
+    margin: 0 5px;
+    transition: 0.3s;
+}
+
+.mvp-btn:hover {
+    background-color: #212a2f;
+    color: white;
+}
+
+.mvp-headline {
+    font-family: Self Modern;
+    font-style: normal;
+    font-size: 40px;
+    font-weight: 400;
+    color: #212a2f;
+}
+
+.mvp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.mvp-card {
+    position: relative;
+}
+
+.mvp-image-wrapper {
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+}
+
+.mvp-image-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.mvp-card-footer {
+    padding: 20px 0;
+    text-align: center;
+}
+
+.card-tag {
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.card-desc {
+    font-size: 0.875rem;
+    color: #575757;
+    max-width: 80%;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .mvp-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* EXPLORE SECTION - FIXED DIMENSIONS */
+.explore-nav { display: flex; gap: 10px; }
+.explore-swiper { margin-left: 20px;}
+.explore-section { width: 1520px; margin: 0 auto; padding: 60px 0px 30px; background: #f5f2ed; overflow: hidden; }
+.explore-header { width: 1470px; margin: 0 auto 30px auto; display: flex; justify-content: space-between; align-items: center; }
+.explore-title { font-size: 14px; letter-spacing: 2px; border-bottom: 2px solid black; }
+.explore-card { width: 412px !important; height: 450px !important; background: white; border-radius: 8px; padding: 24px; box-sizing: border-box; display: flex; flex-direction: column; }
+.card-top { height: 280px; display: flex; align-items: center; justify-content: center; position: relative; }
+.card-top img { width: 100%; height: auto; }
+.card-badge { position: absolute; top: 0; left: 0; font-size: 10px; font-weight: 700; background: #ede7de; padding: 4px 10px; border-radius: 12px; }
+.ex-footer { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
+.ex-swatch { width: 22px; height: 22px; border-radius: 50%; border: 1px solid #ccc; }
+.ex-prev, .ex-next { width: 40px; height: 40px; border: 1px solid #ccc; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+
+/* Footer Styles */
+.main-footer {
+    background-color: var(--dark-slate);
+    color: var(--white);
+    padding: 60px 40px 40px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.subscribe-section h3 {
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+.input-group {
+    display: flex;
+    background: var(--white);
+    border-radius: 30px;
+    padding: 5px;
+    max-width: 350px;
+}
+
+.input-group input {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    flex-grow: 1;
+    outline: none;
+    font-size: 14px;
+}
+
+.signup-btn {
+    background: var(--dark-slate);
+    color: var(--white);
+    border: none;
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.footer-column h4 {
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 15px;
+}
+
+.footer-column ul li a {
+    color: #b0b0b0;
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.3s;
+}
+
+.footer-column ul li a:hover {
+    color: var(--white);
+}
+
+.footer-bottom {
+    border-top: 1px solid #3a3a3a;
+    padding-top: 40px;
+}
+
+.footer-bottom p {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    color: var(--white);
+    font-size: 20px;
+    border: 1.5px solid var(--white);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.social-icons a:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 1024px) {
+    .footer-top {
+        grid-template-columns: 1fr 1fr;
+    }
+    .subscribe-section {
+        grid-column: span 2;
+        margin-bottom: 30px;
+    }
+}
+
+/* Collection Page Grid */
+.collection-container {
+    padding: 120px 40px 60px; /* Room for floating nav */
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.collection-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns as seen in screenshot */
+    gap: 15px;
+}
+
+.collection-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-image-box {
+    position: relative;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-image-box img {
+    width: 100%;
+    object-fit: contain;
+}
+
+.grid-badge {
+    position: absolute;
+    top: 0; left: 0;
+    background: #ede7de;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+.grid-name { font-size: 13px; font-weight: 700; margin: 15px 0 5px; }
+.grid-color { font-size: 12px; color: #666; margin-bottom: 15px; }
+
+.grid-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.swatch-row { display: flex; align-items: center; gap: 5px; }
+.mini-swatch { width: 18px; height: 18px; border-radius: 50%; border: 1px solid #ddd; }
+.extra-count { font-size: 11px; font-weight: 700; margin-left: 5px; }
+.grid-price { font-weight: 700; font-size: 13px; }
+
+/* The Blue Promo Card */
+.promo-card {
+    background: linear-gradient(to bottom, #1a3a5a, #0d1f33);
+    color: white;
+    justify-content: center;
+    text-align: center;
+}
+
+.promo-content h3 {
+    font-size: 20px;
+    padding: 0 20px;
+    line-height: 1.4;
+}

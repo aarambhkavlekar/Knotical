@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knotical | Sustainable Footwear</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="floating-nav">
+        <div class="logo"><a href="/">
+        <img src="/images/banner.png" alt="Knotical Logo" width="74" height="50">
+    </a></div>
+        <div class="nav-links">
+            <a href="/men">MEN</a>
+            <a href="/women">WOMEN</a>
+            <a href="#">SALE</a>
+        </div>
+        <div class="nav-icons">
+            <a href="#" class="about-link">About</a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+              <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+            </svg>
+            <span>🛒</span>
+        </div>
+    </nav>
+
+    <section class="hero-viewport">
+        <div class="carousel-track">
+            <% if (typeof slides !== 'undefined' && slides.length > 0) { %>
+                <% slides.forEach((slide, index) => { %>
+                    <div class="slide <%= index === 0 ? 'active' : '' %>">
+                        
+                        <img src="<%= slide.splitAsset %>" class="hero-img" alt="Knotical Hero">
+
+                        <div class="hero-overlay">
+                            <p class="subtitle"><%= slide.collection %></p>
+                            <h1 class="headline"><%= slide.title %></h1>
+                            <div class="button-row">
+                                <a href="<%= slide.ctaMen %>" class="btn">Shop Men</a>
+                                <a href="<%= slide.ctaWomen %>" class="btn">Shop Women</a>
+                            </div>
+                        </div>
+
+                    </div>
+                <% }) %>
+            <% } %>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar"></div>
+        </div>
+    </section>
+
+    <section class="product-grid">
+        <div class="card-container">
+            <div class="product-card green">
+                <img src="/images/new_arrival.png" alt="New Arrivals">
+                <div class="card-content">
+                    <span class="label">NEW ARRIVALS</span>
+                    <a href="#" class="shop-btn">SHOP NOW</a>
+                </div>
+            </div>
+
+            <div class="product-card grey">
+                <img src="/images/men.png" alt="Mens">
+                <div class="card-content">
+                    <span class="label">MENS</span>
+                    <a href="#" class="shop-btn">SHOP NOW</a>
+                </div>
+            </div>
+
+            <div class="product-card beige">
+                <img src="/images/women.png" alt="Womens">
+                <div class="card-content">
+                    <span class="label">WOMENS</span>
+                    <a href="#" class="shop-btn">SHOP NOW</a>
+                </div>
+            </div>
+
+            <div class="product-card blue">
+                <img src="/images/bestseller.png" alt="Best Sellers">
+                <div class="card-content">
+                    <span class="label">BEST SELLERS</span>
+                    <a href="#" class="shop-btn">SHOP NOW</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="arrival-slider-container">
+        <div class="slider-header">
+            <button class="header-link">NEW ARRIVALS</button>
+        </div>
+            <div class="swiper product-swiper" id="slider-zone">
+                <div class="z-background absolute inset-0 m-auto h-full w-full md:h-[70%] md:w-[70%]">
+                    <div class="pattern-dots-container relative size-full overflow-hidden opacity-60 bg-natural-white">
+                        <div class="bg-dots absolute inset-0 text-stone-300"></div>
+                        <div class="bg-radial-fade-elliptical absolute inset-0"></div>
+                        <div class="z-content relative size-full"></div></div>
+                </div>
+                <div id="custom-cursor">
+                    <span class="arrow-icon">←</span>
+                </div>
+
+                <div class="swiper-wrapper">
+                    <% if (typeof products !== 'undefined') { %>
+                        <% products.forEach((prod) => { %>
+                            <div class="swiper-slide product-item">
+                                <img src="<%= prod.transparentAsset %>" alt="<%= prod.name %>">
+                                <div class="data-store" data-color="<%= prod.cursorBgColor %>" data-name="<%= prod.name %>" data-price="<%= prod.price %>" data-desc="<%= prod.colorName %>"></div>
+                            </div>
+                        <% }) %>
+                    <% } %>
+                </div>
+            </div>
+
+            <div class="product-info-display">
+                <h2 id="display-name">Dasher NZ</h2>
+                <p><span id="display-color">Light Burnt Olive (Natural White Sole)</span> — $<span id="display-price">140</span></p>
+                <div class="mvp-actions">
+                    <a href="#" class="mvp-btn">SHOP MEN</a>
+                    <a href="#" class="mvp-btn">SHOP WOMEN</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="mvp-section">
+            <div class="mvp-header">
+                <h1 class="mvp-headline">Your Easy, Breezy MVP</h1>
+            </div>
+
+            <div class="mvp-grid">
+                <div class="mvp-card">
+                    <div class="mvp-image-wrapper">
+                        <img src="/images/mvp-left.jpg" alt="Naturally Easy">
+                        <div class="mvp-card-footer">
+                            <p class="card-tag">NATURALLY EASY</p>
+                            <p class="card-desc">Classic sport style, reimagined to feel lighter, cooler, and wildly comfortable. A total breeze from the first step.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mvp-card">
+                    <div class="mvp-image-wrapper">
+                        <img src="/images/mvp-right.jpg" alt="Light on your feet">
+                        <div class="mvp-card-footer">
+                            <p class="card-tag">LIGHT ON YOUR FEET</p>
+                            <p class="card-desc">Breathable tree-fiber uppers keep things cool and easy—because your new everyday MVP is made to move.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="explore-section">
+        <div class="explore-header">
+            <h2 class="explore-title">EXPLORE MORE</h2>
+            <div class="explore-nav">
+                <div class="ex-prev"><span>&lt;</span></div>
+                <div class="ex-next"><span>&gt;</span></div>
+            </div>
+        </div>
+        <div class="swiper explore-swiper">
+            <div class="swiper-wrapper">
+                <% explore.forEach(item => { %>
+                    <div class="swiper-slide explore-card">
+                        <div class="card-top">
+                            <% if(item.tag) { %><span class="card-badge"><%= item.tag %></span><% } %>
+                            <img src="<%= item.img %>">
+                        </div>
+                        <div class="card-bottom">
+                            <h4 class="ex-name"><%= item.name %></h4>
+                            <p class="ex-color"><%= item.color %></p>
+                            <div class="ex-footer">
+                                <div class="ex-swatch" style="background-color: <%= item.hex %>;"></div>
+                                <span class="ex-price">$<%= item.price %></span>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+    <div class="footer-top">
+        <div class="subscribe-section">
+            <h3>SUBSCRIBE TO OUR EMAILS</h3>
+            <form class="input-group">
+                <input type="email" placeholder="Email Address">
+                <button type="submit" class="signup-btn">SIGN UP</button>
+            </form>
+        </div>
+
+        <div class="footer-column">
+            <h4>HELP</h4>
+            <ul>
+                <li><a href="#">Live Chat</a></li>
+                <li><a href="#">Call Us</a></li>
+                <li><a href="#">Text Us</a></li>
+                <li><a href="#">help@allbirds.com</a></li>
+                <li><a href="#">FAQ/Contact Us</a></li>
+                <li><a href="#">Returns/Exchanges</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h4>SHOP</h4>
+            <ul>
+                <li><a href="#">Men's Shoes</a></li>
+                <li><a href="#">Women's Shoes</a></li>
+                <li><a href="#">Men's Apparel</a></li>
+                <li><a href="#">Women's Apparel</a></li>
+                <li><a href="#">Socks</a></li>
+                <li><a href="#">Gift Cards</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h4>COMPANY</h4>
+            <ul>
+                <li><a href="#">Store Locator</a></li>
+                <li><a href="#">Our Story</a></li>
+                <li><a href="#">Our Materials</a></li>
+                <li><a href="#">Sustainability</a></li>
+                <li><a href="#">Investors</a></li>
+                <li><a href="#">Affiliates</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <ul>
+                <li><a href="#">Press</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Transparency Act</a></li>
+                <li><a href="#">Community Offers</a></li>
+                <li><a href="#">Our Blog</a></li>
+                <li><a href="#">Patents</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>FOLLOW THE FLOCK</p>
+        <div class="social-icons">
+            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-pinterest"></i></a>
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-twitter-x"></i></a>
+            <a href="#"><i class="bi bi-tiktok"></i></a>
+            <a href="#"><i class="bi bi-youtube"></i></a>
+        </div>
+    </div>
+</footer>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>
