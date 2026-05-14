@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Women's Collection | Knotical</title>
+    <title>Men's Collection | Knotical</title>
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body class="collection-page">
@@ -64,18 +64,25 @@
             <% products.forEach(item => { %>
                 <div class="collection-card" onclick="window.location.href='/product/<%= item.id %>'" style="cursor: pointer;">
                     <div class="card-image-box">
-                        <% if(item.tag) { %><span class="grid-badge"><%= item.tag %></span><% } %>
+                        <% if(item.tag) { %><span class="grid-badge"><%= item.category %></span><% } %>
                         <img src="<%= item.img_url %>" alt="<%= item.name %>">
                     </div>
                     <div class="card-details">
                         <h4 class="grid-name"><%= item.name %></h4>
                         <p class="grid-color"><%= item.color %></p>
+                        
+                        <% if (item.stock_quantity < 10 && item.stock_quantity > 0) { %>
+                            <p style="color: #d97706; font-size: 11px; font-weight: bold; margin-bottom: 5px;">Only <%= item.stock_quantity %> left!</p>
+                        <% } else if (item.stock_quantity === 0) { %>
+                            <p style="color: #dc2626; font-size: 11px; font-weight: bold; margin-bottom: 5px;">Out of Stock</p>
+                        <% } %>
+
                         <div class="grid-footer">
                             <div class="swatch-row">
                                 <% item.hex_colors.forEach(hex => { %>
                                     <div class="mini-swatch" style="background-color: <%= hex %>;"></div>
                                 <% }) %>
-                                <span class="extra-count">+<%= Math.floor(Math.random() * 5) %></span>
+                                <span class="extra-count">+<%= Math.floor(Math.random() * 10) %></span>
                             </div>
                             <span class="grid-price"><%= item.price %>rs</span>
                         </div>
@@ -85,7 +92,7 @@
 
             <div class="collection-card promo-card">
                 <div class="promo-content">
-                    <h3>Special Offer: 30% Off When You Spend $130+</h3>
+                    <h3>30% Off Your Order When You Spend $130+</h3>
                 </div>
             </div>
         </div>
