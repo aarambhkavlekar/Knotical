@@ -2,8 +2,10 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import pool from './db.js'; // Import your database connection
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import session from "express-session";
+import dotenv from "dotenv";
+dotenv.config();
 const saltRounds = 10;
 
 const __filename = fileURLToPath(import.meta.url);
