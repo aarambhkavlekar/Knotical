@@ -7,10 +7,10 @@ Knotical is a full-stack e-commerce web application that allows users to browse 
 ✨ Features 🛒 Product browsing system 🧾 Add to Cart / Remove from Cart functionality 👤 User authentication system (Login / Register) 🔐 Secure session handling 📦 PostgreSQL database integration ⚡ RESTful API backend (Node + Express) 📱 Responsive UI for all devices ☁️ Deployed on Render
 
 🛠 Tech Stack 
-Frontend 
-    HTML  
-    CSS  
-    JavaScript (React / EJS / or your actual frontend if used) 
+\Frontend 
+\    HTML  
+\    CSS  
+\    JavaScript (React / EJS / or your actual frontend if used) 
 Backend 
     Node.js 
     Express.js 
